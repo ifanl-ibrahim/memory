@@ -1,6 +1,6 @@
 <?php
-require "../liens/config.php";
-require "../src/userclass.php";
+include_once ("../liens/config.php");
+require ("../src/userclass.php");
 $user = new classes();
 $user->dbconnect();
 $user->block();

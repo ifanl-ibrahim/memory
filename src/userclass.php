@@ -119,17 +119,38 @@ class user {
 
 
   public function update ($_login, $_password) {
-    $_login = ($_login);
-    $_password = ($_password);
+    $db=$this->connectdb();
+    $msg= '';
+    $newlogin = htmlspecialchars(trim($_login));
+    $newpassword = htmlspecialchars(trim($_password));
+    $query=$db->prepare("SELECT id FROM user WHERE login= '$newlogin'");
+    $query->execute();
 
-    $_ancienlog = $this->_login;
-    $this->_login = $_login;
-    $this->_password = $_password;
-    
-    $link = $this->_link;
-    $req = "SELECT `login`, `password` FROM `user`";
-    $SQL = "UPDATE user SET login='$_login', password='$_password' WHERE login ='$_ancienlog'";
-    $query = $link->query($SQL);                                 
-    echo "<p style= 'color: green'>les info ont bien été changé.</p>";
+    if(!$query->rowCount()) {
+      if($newlogin) {
+        if($newpassword) {
+          $newpassword = password_hash($newpassword, PASSWORD_BCRYPT);
+          $query = $db->prepare("UPDATE user SET login= '$newlogin', password='$newpassword' WHERE login='$this->login'");
+          $query->execute();
+        }
+      }
+      else {
+        $msg= 'Le login demander est déja pris';
+        }
+      $db = null;
+      return $msg;    
+    }
+  }
+
+
+
+  /////////////////////// info
+
+
+
+  public function getId(){
+    return $this->id;   
   }
 }
+
+?>
