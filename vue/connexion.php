@@ -1,25 +1,14 @@
 <?php
-include_once ("../liens/config.php");
-require ("../src/userclass.php");
-$user = new classes();
-$user->dbconnect();
+include ("../model/userclass.php");
+require ('header.php');
+$user = new user();
 $user->block();
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <title>Connexion</title>
-    <link rel="stylesheet" href="connexion.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shorcut icon" href="./images-salles/avatar_ciné.png">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo&display=swap" rel="stylesheet">
-  </head>
+<title>Connexion</title>
+<link rel="stylesheet" href="connexion.css">
+    
 <body>
-    <header>
-        <?php include_once('header.php') ?>
-    </header>
     <main> 
         <section class = "connexion">
             <div class = "caseco">
@@ -39,8 +28,6 @@ $user->block();
             </div>
         </section>
     </main>
-    <footer>
-        <?php include_once('footer.php') ?>
-    </footer>
-</body>
-</html>
+   
+<?php require ('footer.php') ?>
+   

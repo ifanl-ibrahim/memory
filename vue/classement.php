@@ -2,8 +2,8 @@
 
 <?php
 
-include_once('../liens/config.php');
-include_once('../pages/header.php');
+include_once('../control/config.php');
+include_once('header.php');
 
 
 $db = new PDO('mysql:host=localhost;dbname=memory', 'root', '');
@@ -29,7 +29,6 @@ for($i=0;isset($leaderboard[$i]) && $i<10;$i++){
     }
     echo "</tr>";
 
-echo "</table></div></main>";
-include_once('../src/component/footer.php');
+echo "</table></div></main>";   
 
 ?>

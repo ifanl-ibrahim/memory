@@ -1,8 +1,15 @@
 <?php 
-include_once('../liens/config.php');
-require_once('../src/userclass.php');
-require_once('../src/scoreclass.php');
+include ('../control/config.php');
+require ('header.php');
+if (!isset($_SESSION['login'])) {
+    header("Refresh: 2; url=connexion.php");
+    echo "<p>connecte toi.</p><br><p>Redirection...</p>";
+    exit();
+}
 ?>
+
+<title>Connexion</title>
+<link rel="stylesheet" href="connexion.css">
 
 <?php
 $msg ='';
@@ -12,22 +19,18 @@ if(isset($_POST['modifier'])){
         header('Location: ../index.php');
     }
 }
-$user=$_SESSION['user'];
+$user=$_SESSION['user'][2];
 if(isset($_SESSION['game'])){
     $game=$_SESSION['game'];
 }else{
     $game=new score();
 }
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil</title>
-    <link rel='stylesheet' href='./style/profil.css'>
-</head>
-<body>
+
+<title>Profil</title>
+<link rel='stylesheet' href='./style/profil.css'>
+
+
     <form class="formulaire" method="post">
         <h2>Modifiez vos informations</h2>
         <input class="information" type="text" name="login" placeholder="New username">

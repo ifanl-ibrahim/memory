@@ -12,11 +12,9 @@ class user {
 
 
 
-  public function dbconnect() {
-
+  public function __construct() {
     $conn = new PDO("mysql:host=localhost; dbname=memory", 'root', '');
     $this->_link = $conn;
-
   }
 
 
@@ -119,18 +117,18 @@ class user {
 
 
   public function update ($_login, $_password) {
-    $db=$this->connectdb();
+    $link=$this->_link;
     $msg= '';
     $newlogin = htmlspecialchars(trim($_login));
     $newpassword = htmlspecialchars(trim($_password));
-    $query=$db->prepare("SELECT id FROM user WHERE login= '$newlogin'");
+    $query=$link->prepare("SELECT id FROM user WHERE login= '$newlogin'");
     $query->execute();
 
     if(!$query->rowCount()) {
       if($newlogin) {
         if($newpassword) {
           $newpassword = password_hash($newpassword, PASSWORD_BCRYPT);
-          $query = $db->prepare("UPDATE user SET login= '$newlogin', password='$newpassword' WHERE login='$this->login'");
+          $query = $link->prepare("UPDATE user SET login= '$newlogin', password='$newpassword' WHERE login='$this->login'");
           $query->execute();
         }
       }
