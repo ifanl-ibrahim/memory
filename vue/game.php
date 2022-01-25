@@ -29,21 +29,55 @@ session_start();
     shuffle($plateau); //mélange le tableau
     $_SESSION['plateau']=$plateau; //tableau est dans une session
 }
-$existCart=[];
+$existCart = [
+        0=>'images/0.jpg',
+        1=>'images/1.jpg',
+        2=>'images/2.jpg',
+        3=>'images/3.jpg',
+        4=>'images/4.jpg',
+        5=>'images/5.jpg',
+        6=>'images/6.jpg',
+        7=>'images/7.jpg',
+        8=>'images/8.jpg',
+        9=>'images/9.jpg',
+        10=>'images/10.jpg',
+        11=>'images/11.jpg',
+        12=>'images/12.jpg'
+    ];
+
+    
+    // foreach ($plateau as $_SESSION['carte']) {
+    //     foreach($_SESSION['carte'] as $value) {
+    //       if($value == $value->face){
+    //           echo $value.'</br>';
+    //       }else{
+    //         echo 'non';
+
+    //       }
+
+    // }
+    // }
 if(isset($_POST['button'])) {
     $position = $_POST['position']; //reucpaire la position d'un objet du tableau
     $_SESSION['plateau'][$position]->etat = 2; //pour manipuler l'état de l'objet parcourir avec cette méthode
-    $carte = $_SESSION['plateau'][$position]->face;
+    $_SESSION['carte'] = $_SESSION['plateau'][$position]->face;
 
-array_push($existCart,$carte);
-if ($existCart[0]==$carte) {
-echo'ok';
+array_push($existCart, $_SESSION['carte']);
+if ($existCart==$_SESSION['carte']) {
+    unset($existCart);
+    $_SESSION['carte2'];
 }
-else unset($existCart);
-    $carte->etat = 0;
+if ($_SESSION['carte']==$_SESSION['carte2']) {
+    unset($existCart);
+    echo 'oui';
+} else {
+    unset($existCart);
+    echo 'non';
+}
+    
 
 }
-var_dump($existCart[0]);
+var_dump($_SESSION['carte']);
 
 
 
