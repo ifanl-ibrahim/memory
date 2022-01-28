@@ -1,34 +1,37 @@
 <?php 
-include ('../control/config.php');
 require ('header.php');
-if (!isset($_SESSION['login'])) {
+if (!isset($_SESSION['user'])) {
     header("Refresh: 2; url=connexion.php");
     echo "<p>connecte toi.</p><br><p>Redirection...</p>";
     exit();
+} else {
+    echo "<h3 class='titre_user'>Bienvenue sur ton profil $login</h3>";
 }
 ?>
 
-<title>Connexion</title>
-<link rel="stylesheet" href="connexion.css">
+<title>profil</title>
+<link rel="stylesheet" href="style/profil.css">
 
 <?php
 $msg ='';
-if(isset($_POST['modifier'])){
+
+if(isset($_POST['modifier'])) {
     $msg = $_SESSION['user']->update($_POST['login'], $_POST['password']);
     if($msg == ''){
         header('Location: ../index.php');
     }
 }
-$user=$_SESSION['user'][2];
+$user=$_SESSION['user']['login'];
+
 if(isset($_SESSION['game'])){
     $game=$_SESSION['game'];
 }else{
-    $game=new score();
+    var_dump($_SESSION['user']['login']);
 }
 ?>
 
 <title>Profil</title>
-<link rel='stylesheet' href='./style/profil.css'>
+<link rel='stylesheet' href='style/profil.css'>
 
 
     <form class="formulaire" method="post">

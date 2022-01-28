@@ -1,8 +1,7 @@
-<link rel='stylesheet' href='./style/classement.css'>
+<link rel='stylesheet' href='style/classement.css'>
 
 <?php
 
-include_once('../control/config.php');
 include_once('header.php');
 
 

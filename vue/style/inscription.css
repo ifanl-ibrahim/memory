@@ -1,0 +1,39 @@
+body {
+    background-image: url(../images/noctalifont.png);
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+
+main {
+    text-align: center;
+    margin: 15vh;
+}
+
+form {
+    width: min-content;
+    padding: 5vh;
+    border: 1vh solid darkgoldenrod;
+    margin: auto;
+    border-radius: 10vh;
+    background-color: rgba(128, 128, 128, 0.178);
+}
+
+input {
+    margin: 2vh;
+}
+
+input[type=submit] {
+    border-radius: 2vh;
+    background-color: darkgoldenrod;
+    transition: 0.5s;
+    cursor: pointer;
+    width: 100%;
+    padding: 1.5vh;
+    margin: auto;
+    margin-top: 2vh;
+}
+
+input[type=submit]:hover {
+    color: darkgoldenrod;
+    background: whitesmoke;
+}

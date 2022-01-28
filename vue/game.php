@@ -1,7 +1,6 @@
 <?php 
 require "../model/plateau.php";
 require "./header.php";
-session_start(); 
 ?>
 
 <link rel="stylesheet" href="vue/style/game.css">
@@ -27,57 +26,46 @@ session_start();
     $shuffle_plateau = $plateau->_creeplateau($plateau); //mélange les objets du tableau crée
     $plateau = $shuffle_plateau; 
     shuffle($plateau); //mélange le tableau
-    $_SESSION['plateau']=$plateau; //tableau est dans une session
+    $_SESSION['plateau'] = $plateau; //tableau est dans une session
+    $_SESSION['ExistCard'] = array();
+    $_SESSION['decouvCard'] = array();
 }
-$existCart = [
-        0=>'images/0.jpg',
-        1=>'images/1.jpg',
-        2=>'images/2.jpg',
-        3=>'images/3.jpg',
-        4=>'images/4.jpg',
-        5=>'images/5.jpg',
-        6=>'images/6.jpg',
-        7=>'images/7.jpg',
-        8=>'images/8.jpg',
-        9=>'images/9.jpg',
-        10=>'images/10.jpg',
-        11=>'images/11.jpg',
-        12=>'images/12.jpg'
-    ];
 
     
-    // foreach ($plateau as $_SESSION['carte']) {
-    //     foreach($_SESSION['carte'] as $value) {
-    //       if($value == $value->face){
-    //           echo $value.'</br>';
-    //       }else{
-    //         echo 'non';
-
-    //       }
-
-    // }
-    // }
+    
 if(isset($_POST['button'])) {
     $position = $_POST['position']; //reucpaire la position d'un objet du tableau
-    $_SESSION['plateau'][$position]->etat = 2; //pour manipuler l'état de l'objet parcourir avec cette méthode
-    $_SESSION['carte'] = $_SESSION['plateau'][$position]->face;
+    $_SESSION['plateau'][$position]->face;//pour manipuler l'état de l'objet parcourir avec cette méthode
+    array_push($_SESSION['ExistCard'], $_SESSION['plateau'][$position]->face);
 
-array_push($existCart, $_SESSION['carte']);
-if ($existCart==$_SESSION['carte']) {
-    unset($existCart);
-    $_SESSION['carte2'];
-}
-if ($_SESSION['carte']==$_SESSION['carte2']) {
-    unset($existCart);
-    echo 'oui';
-} else {
-    unset($existCart);
-    echo 'non';
-}
-    
+    if($_SESSION['ExistCard'] >= 2) {
+        // var_dump('oui');
+        if($_SESSION['ExistCard'] == $_SESSION['ExistCard']) {
+            array_push($_SESSION['decouvCard'], $_SESSION['ExistCard']);
+            // stat($_SESSION['decouvCard']);
+            // reset($_SESSION['ExistCard']);
+        } else {
+            $_SESSION['ExistCard'][0]->dos;
+            $_SESSION['ExistCard'][1]->dos;
+        }
+    } else {}
 
+    var_dump($_SESSION['plateau'][$position]->etat=2);
+    var_dump($_SESSION['ExistCard']);
+    var_dump($_SESSION['decouvCard']);
+
+
+    /*
+        On créer deux tableau avec aucune données nommé ExistCard + decouvCard
+
+        Lorsqu'on appuie sur une carte ont la stock dans le tableau, ensuite quand on retourne une deuxième on la compare à la première
+        si les deux cartes sont identique alors on les met dans un tableau decouvCard puis on les laisse afficher si elle sont pas identique
+        alors on les refait se retourner, donc reset le tableau ExistCard
+
+
+    */
 }
-var_dump($_SESSION['carte']);
+
 
 
 
@@ -101,11 +89,7 @@ if(isset($_SESSION['plateau'])) {
             <img src="<?= $value->face?>" alt="carte" height="200" width="100">
         <?php }
     } 
-
-    
-   
-
-    
+  
 }
 ?>
 </div>

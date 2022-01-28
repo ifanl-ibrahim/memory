@@ -1,3 +1,11 @@
+<?php
+    include "../model/userclass.php";
+    session_start();
+    $user = new User;
+    if(isset($_POST['deconnexion'])){
+        $user->disconnect();
+    }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

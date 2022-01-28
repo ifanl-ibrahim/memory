@@ -1,6 +1,6 @@
 <?php
 
-class score {
+class Score {
   private $_link;
   private $_id;
   public $_score;

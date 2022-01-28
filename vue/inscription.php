@@ -1,33 +1,28 @@
 <?php
 include ("../model/userclass.php");
 require ('header.php');
-$user = new user();
 $user->block();
 ?>
 
 <title>Inscription</title>
-<link rel="stylesheet" href="inscription.css">
+<link rel="stylesheet" href="style/inscription.css">
     
 <main> 
-    <section class = "inscription">
-        <div class = "caseinscription">
-            <h3 class = "H3C">Inscription</h3>
-            <form method="post">
-                <label for="login">LOGIN</label>
-                <input type="text" name="login" id="login" class = "marge" ><br>
-                <label for="password">MDP</label>
-                <input type="password" name="password" id="password" class = "marge3"><br>
-                <label for="confirm_password">CONFIRMEZ</label>
-                <input type="password" name="confirm_password" id="confirm_password" class = "marge2" >
-                <input type="submit" name="submit" value="S'inscrire !" class = "confirm" class = "marge" >
-                <?php
-                    if(isset($_POST['submit'])){
-                        $user->register($_POST['login'], $_POST['password'], $_POST['confirm_password']);
-                    }
-                ?>
-            </form>
-        </div>
-    </section>
+    <h2>Inscription</h2>
+    <form method="post">
+        <label for="login" id=label>LOGIN</label>
+        <input type="text" name="login"><br>
+        <label for="password" id=label>PASSWORD</label>
+        <input type="password" name="password"><br>
+        <label for="confirm_password" >CONFIRM PASSWORD</label>
+        <input type="password" name="confirm_password">
+        <input type="submit" name="submit" value="S'inscrire !">
+        <?php
+            if(isset($_POST['submit'])){
+                $user->register($_POST['login'], $_POST['password'], $_POST['confirm_password']);
+            }
+        ?>
+    </form>
 </main>
 
 <?php require ('footer.php'); ?>
