@@ -93,7 +93,7 @@ class User {
   {
     $this->_login = '';
     $this->_password = '';
-    session_unset();
+    session_destroy();
     header("refresh: 0.1; url=index.php");
   }
 

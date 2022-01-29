@@ -39,16 +39,18 @@ if(isset($_POST['button'])) {
     array_push($_SESSION['ExistCard'], $_SESSION['plateau'][$position]->face);
 
     if($_SESSION['ExistCard'] >= 2) {
-        // var_dump('oui');
-        if($_SESSION['ExistCard'] == $_SESSION['ExistCard']) {
-            array_push($_SESSION['decouvCard'], $_SESSION['ExistCard']);
-            // stat($_SESSION['decouvCard']);
-            // reset($_SESSION['ExistCard']);
-        } else {
-            $_SESSION['ExistCard'][0]->dos;
-            $_SESSION['ExistCard'][1]->dos;
+        if($_SESSION['ExistCard'][0] == $_SESSION['ExistCard'][1]) {
+            array_push($_SESSION['decouvCard'], $_SESSION['ExistCard'][0], $_SESSION['ExistCard'][1]);
+            unset($_SESSION['ExistCard']);
+            $_SESSION['ExistCard'] = array();
         }
-    } else {}
+        else {
+            foreach ($_SESSION['ExistCard'] as $key => $value) {
+                $value->etat=0;
+            }
+        }
+    }    
+    else {}
 
     var_dump($_SESSION['plateau'][$position]->etat=2);
     var_dump($_SESSION['ExistCard']);
