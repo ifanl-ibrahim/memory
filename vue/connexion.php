@@ -1,5 +1,4 @@
 <?php
-include ("../model/userclass.php");
 require ('header.php');
 $user->block();
 ?>

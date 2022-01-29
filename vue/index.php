@@ -1,9 +1,15 @@
-<title>Accueil</title>
-<link rel='stylesheet' href='style/index.css'>
-<?php require 'header.php' ?>
+<?php 
+require "../model/plateau.php";
+require "./header.php";
+?>
 
-    <main>
-        bonjours
-    </main>
+<link rel="stylesheet" href="style/index.css">
+<title>Memory Game</title>
 
-<?php require "footer.php" ?> 
+<main>
+    <?php
+        require "../control/config.php"
+    ?>
+</main>
+<?php require "./footer.php"; ?>
+</html>

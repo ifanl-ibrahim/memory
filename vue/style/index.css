@@ -1,0 +1,22 @@
+body {
+    background-image: url(../images/noctalifont.png);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-size: 50vh;
+}
+
+main {
+    margin: 15vh;
+}
+
+p {
+    border: solid darkgoldenrod 1vh;
+    padding: 10vh;
+    text-align: center;
+    margin: auto;
+    width: fit-content;
+    border-radius: 10vh;
+    background-color: rgba(128, 128, 128, 0.178);
+    text-transform: uppercase;
+    font-weight: 600;
+}
