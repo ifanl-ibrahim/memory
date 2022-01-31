@@ -21,39 +21,44 @@
             $plateau= new Plateau($p); //connexion a la class plateau
             $shuffle_plateau = $plateau->_creeplateau($plateau); //mélange les objets du tableau crée
             $plateau = $shuffle_plateau; 
-            shuffle($plateau); //mélange le tableau
+            // shuffle($plateau); //mélange le tableau
             $_SESSION['plateau'] = $plateau; //tableau est dans une session
             $_SESSION['ExistCard'] = array();
             $_SESSION['decouvCard'] = array();
         }
     
-    
-    
         if(isset($_POST['button'])) {
+            if(isset($_POST['button'])){
+                $count = $_SESSION['count'] + 1;
+                $_SESSION['count'] = $count;
+            }
+            echo $_SESSION['count'];
+            
             $position = $_POST['position']; //reucpaire la position d'un objet du tableau
-            $_SESSION['plateau'][$position]->face;//pour manipuler l'état de l'objet parcourir avec cette méthode
-            array_push($_SESSION['ExistCard'], $_SESSION['plateau'][$position]->face);
+            $_SESSION['plateau'][$position]->etat=2;//change l'etat de l'objet pour passer de dos a face
+            $_SESSION['carte'] =[$_SESSION['plateau'][$position]->face, $_SESSION['plateau'][$position]->etat, $position]; //envoi l'etat, le nom et la position de l'objet dans un tableau
+
+            array_push($_SESSION['ExistCard'], $_SESSION['carte']); //envoi le resultat dans un tablau pour les comparer
     
-            if($_SESSION['ExistCard'] >= 2) {
-                if($_SESSION['ExistCard'][0] == $_SESSION['ExistCard'][1]) {
-                    array_push($_SESSION['decouvCard'], $_SESSION['ExistCard'][0], $_SESSION['ExistCard'][1]);
+            if(isset($_SESSION['ExistCard'][1])) {
+                if($_SESSION['ExistCard'][0][0] == $_SESSION['ExistCard'][1][0]) { //compare le nom et l'etat de l'objet
+                    array_push($_SESSION['decouvCard'], $_SESSION['ExistCard'][0], $_SESSION['ExistCard'][1]); //envoiles bon resultat dans un tableau
+                    unset($_SESSION['ExistCard']); //vide le tableau de comparaison
+                    $_SESSION['ExistCard'] = array(); //recrée un tableau de comparaison
+                }
+                else {
+                    $pos1 = $_SESSION['ExistCard'][0][2]; //recupaire la nouvel position de l'objet
+                    $pos2 = $_SESSION['ExistCard'][1][2]; //recupaire la nouvel position de l'objet
+                    sleep(1);
+                    $_SESSION['plateau'][$pos1]->etat=0; //change l'etat pour le remettre a 0
+                    $_SESSION['plateau'][$pos2]->etat=0; //change l'etat pour le remettre a 0
                     unset($_SESSION['ExistCard']);
                     $_SESSION['ExistCard'] = array();
                 }
-                else {
-                    foreach ($_SESSION['ExistCard'] as $key => $value) {
-                        $value->etat=1;
-                    }
-                }
-            }    
+            }
             else {}
-    
-            var_dump($_SESSION['plateau'][$position]->etat=2);
-            var_dump($_SESSION['ExistCard']);
-            var_dump($_SESSION['decouvCard']);
-              
         }
-    
+
         ?>
         <div class='blocjeux'>
         <?php
@@ -72,7 +77,8 @@
                 if ( $value->etat ==2){
                 ?>
                     <img src="<?= $value->face?>" alt="carte" height="200" width="100">
-                <?php }
+                <?php 
+                }
             } 
         
         }

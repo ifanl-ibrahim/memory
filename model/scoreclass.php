@@ -24,4 +24,9 @@ class Score {
       }
     }
   }
+
+  public function addscore(){
+    $this->score=$this->score+(5*($this->nb_paire/2));
+
+}
 }
