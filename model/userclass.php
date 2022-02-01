@@ -116,38 +116,27 @@ class User {
 
 
 
-  public function update ($_login, $_password) {
-    $link=$this->_link;
-    $msg= '';
-    $newlogin = htmlspecialchars(trim($_login));
-    $newpassword = htmlspecialchars(trim($_password));
-    $query=$link->prepare("SELECT id FROM user WHERE login= '$newlogin'");
-    $query->execute();
+  public function update ($_login) {
+    $sql = "UPDATE user set login = :login WHERE id= :id";
+    $result = $this->_link->prepare($sql);
+    $result->bindValue(':login',$_login);
+    $result->bindValue(':id',$_SESSION['user']['id']);
 
-    if(!$query->rowCount()) {
-      if($newlogin) {
-        if($newpassword) {
-          $newpassword = password_hash($newpassword, PASSWORD_BCRYPT);
-          $query = $link->prepare("UPDATE user SET login= '$newlogin', password='$newpassword' WHERE login='$this->login'");
-          $query->execute();
-        }
-      }
-      else {
-        $msg= 'Le login demander est déja pris';
-        }
-      $db = null;
-      return $msg;    
-    }
+    $result->execute();
+      echo"<p style= 'color: green'>vous modifié '$_login'<br></p>";
+      header("Refresh:1");
   }
 
+  public function updatepass ($_password) {
+    $crypt = password_hash($_password, PASSWORD_BCRYPT);
+    $sql = "UPDATE user set password = :password WHERE id= :id";
+    $result = $this->_link->prepare($sql);
+    $result->bindValue(':password',$crypt);
+    $result->bindValue(':id',$_SESSION['user']['id']);
 
-
-  /////////////////////// info
-
-
-
-  public function getId(){
-    return $this->id;   
+    $result->execute();
+      echo"<p style= 'color: green'>Le mot de passe a bien été changé<br></p>";
+      header("Refresh:1");
   }
 }
 

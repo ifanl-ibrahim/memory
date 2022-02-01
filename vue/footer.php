@@ -13,7 +13,6 @@
                     }
             ?>
         </nav>
-        
         <a href="https://github.com/ifanl-ibrahim"><img class = "logogit" src="images/github.png" alt = "Logogit"></a>
     </footer>
 </body>

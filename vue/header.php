@@ -1,7 +1,9 @@
 <?php
     include "../model/userclass.php";
+    include "../model/scoreclass.php";
     session_start();
-    $user = new User;
+    $user = new User();
+    $score = new Score();
     if(isset($_POST['deconnexion'])){
         $user->disconnect();
     }

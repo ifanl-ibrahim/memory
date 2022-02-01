@@ -1,0 +1,29 @@
+body {
+    background-image: url(../images/noctalifont.png);
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    color: white;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+    text-align: center;
+    width: fit-content;
+}
+
+td {
+    padding: 2vh;
+    background-color:  rgba(128, 128, 128, 0.76);
+    border-radius: 2vh;
+}
+
+th {
+    padding: 3vh;
+    background-color: rgb(179, 129, 4);
+    border-radius: 2vh;
+}

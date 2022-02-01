@@ -6,7 +6,7 @@ body {
 }
 
 main {
-    margin: 15vh;
+    margin: 19vh;
 }
 
 p {
@@ -19,4 +19,24 @@ p {
     background-color: rgba(128, 128, 128, 0.178);
     text-transform: uppercase;
     font-weight: 600;
+}
+
+.blocjeux {
+    display: flex;
+    flex-flow: wrap;
+    margin: 5vh;
+    justify-content: space-between;
+}
+
+button {
+    margin: 3vh;
+    padding: 0;
+}
+
+img {
+    margin: 2vh;
+}
+
+.select {
+    text-align: center;
 }
