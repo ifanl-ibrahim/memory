@@ -89,7 +89,8 @@
     else {
         echo 
             '<p>
-                Bienvenue sur Memory game<br><br>
+                Bienvenue sur le plus dur des<br><br>
+                Memory game<br><br>
                 inscrit-toi ou connecte-toi<br>
                 et amuse toi !
             </p>';

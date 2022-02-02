@@ -1,3 +1,3 @@
 <?php
-require "vue/index.php";
+header('location:vue/index.php');
 ?>
